@@ -521,7 +521,7 @@ if ($ai) {
                         <br>or fill the following form. We will contact you back within 12
                         hours or prior.
                     </p>
-                    <form id="contactForm">
+                    <form class="ajax-contact-form">
                         
 
                         <div class="row">
@@ -582,7 +582,7 @@ if ($ai) {
                                 </button>
                             </div>
                         </div>
-                        <div id="formStatus"></div>
+                        <div class="formStatus"></div>
 
                     </form>
 

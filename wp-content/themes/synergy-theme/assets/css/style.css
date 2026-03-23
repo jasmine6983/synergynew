@@ -1046,6 +1046,235 @@ nav.navbar {
 }
 
 
+/* HEADER */
+.syg_header_wrap {
+    padding: 20px 0;
+}
+
+.syg_header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.syg_nav a {
+    margin: 0 12px;
+    color: #555;
+    cursor: pointer;
+}
+
+.syg_active {
+    color: #1e5aa6;
+    font-weight: 500;
+}
+
+/* HERO */
+.syg_badge {
+    background: #e6f0ff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.syg_title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+}
+
+.syg_title span {
+    color: #1e5aa6;
+    font-style: italic;
+}
+
+.syg_btn {
+    background: #1e5aa6;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.syg_hero_img {
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+/* SECTION */
+.syg_section_title {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+}
+
+.syg_section_title span {
+    color: #1e5aa6;
+}
+
+/* CARDS */
+.syg_card {
+    background: linear-gradient(135deg, #0c2b4d, #103d6b);
+    color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.syg_small_card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* IMAGE */
+.syg_side_img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* FOOTER */
+.syg_footer {
+    background: #061c2f;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.syg_footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* SECTION */
+.cx7_contact_wrap {
+    padding: 10em 0;
+    position: relative;
+}
+
+/* LEFT */
+.cx7_badge {
+    background: #e6f0ff;
+    color: #1e5aa6;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.cx7_title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.cx7_title span {
+    color: #1e5aa6;
+    font-style: italic;
+}
+
+.cx7_desc {
+    color: #6b7280;
+    max-width: 480px;
+}
+
+/* CONTACT INFO */
+.cx7_contact_info {
+    margin-top: 30px;
+    font-family: 'Poppins';
+}
+
+.cx7_info_item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cx7_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.25px solid #086DB9;
+}
+
+/* FORM */
+.cx7_form_box {
+    background: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    font-family: 'Poppins';
+    border: 1.28px solid #E2E8F0;
+}
+
+.cx7_input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 14px;
+}
+
+.cx7_textarea {
+    height: 120px;
+    resize: none;
+}
+
+.cx7_submit_btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 45.36px;
+    background: var(--g3, linear-gradient(90deg, #04538E 0%, #096FBD 100%));
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    transition: 0.3s;
+    font-family: 'Poppins';
+}
+
+.cx7_submit_btn:hover {
+    border-radius: 45.36px;
+    background: var(--g3, linear-gradient(90deg, #04538E 0%, #096FBD 100%));
+}
+
+.cx7_info_item strong {
+    font-weight: 600;
+}
+
+.cx7_info_item p {
+    color: #475569;
+}
+
+.contact-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    right: 0px;
+}
+
+.cx7_form_box label {
+    color: #334155;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25.606px;
+    /* 142.857% */
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .cx7_title {
+        font-size: 34px;
+    }
+
+    .cx7_form_box {
+        margin-top: 30px;
+    }
+}
+
 
 
 /* ------------------media query -------------*/
@@ -1118,6 +1347,12 @@ nav.navbar {
 
 /* Only for mobile */
 @media (max-width: 991.98px) {
+
+
+
+    .contact-bg {
+        display: none;
+    }
 
     #banner-explore-more-mobile {
         display: block
@@ -1843,9 +2078,4 @@ nav.navbar {
     .explore-more.small img {
         display: inline-block;
     }
-}
-
-.quick-link ul li a {
-    text-decoration : none;
-    color: #bebebe;
 }

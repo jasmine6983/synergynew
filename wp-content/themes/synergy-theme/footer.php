@@ -110,13 +110,15 @@ Template Name: Footer
 
 <?php wp_footer(); ?>
 <script>
-    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    document.querySelectorAll(".ajax-contact-form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const form = e.target;
+
         const formData = new FormData(form);
         formData.append('action', 'synergy_contact_form_ajax');
 
-        document.getElementById("formStatus").innerText = "Sending...";
+        const statusEl = form.querySelector(".formStatus");
+        if (statusEl) statusEl.innerText = "Sending...";
 
         try {
             const response = await fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
@@ -125,16 +127,18 @@ Template Name: Footer
             });
 
             const result = await response.json();
+
             if (result.success) {
-                document.getElementById("formStatus").innerText = "Message sent successfully!";
+                if (statusEl) statusEl.innerText = "Message sent successfully!";
                 form.reset();
             } else {
-                document.getElementById("formStatus").innerText = "Error: " + result.data;
+                if (statusEl) statusEl.innerText = "Error: " + result.data;
             }
         } catch (err) {
-            document.getElementById("formStatus").innerText = "Something went wrong.";
+            if (statusEl) statusEl.innerText = "Something went wrong.";
         }
     });
+});
 </script>
 </body>
 

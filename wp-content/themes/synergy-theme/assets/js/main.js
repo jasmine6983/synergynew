@@ -280,16 +280,15 @@ $(".product-learnmore").click(function (e) {
 
   const $this = $(this);
   const $para = $this.siblings("p");
-  const siteUrl = $this.data("site-url");
 
   // Toggle a class for expanded/collapsed state
   $para.toggleClass("expanded");
 
   // Change text based on state
   if ($para.hasClass("expanded")) {
-    $this.html('Show Less <img src="' + siteUrl + '/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg" />');
+    $this.html('Show Less <img src="assets/img/aroow-blue.svg" />');
   } else {
-    $this.html('Learn More <img src="' + siteUrl + '/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg" />');
+    $this.html('Learn More <img src="assets/img/aroow-blue.svg" />');
   }
 });
 
