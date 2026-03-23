@@ -1,0 +1,19 @@
+# Ignore configuration files
+wp-config.php
+
+# Ignore all plugins except custom ones
+wp-content/plugins/*
+!wp-content/plugins/create-menu/   
+!wp-content/plugins/custom-contact-form/        
+
+# Ignore uploads
+wp-content/uploads/
+
+# Cache, logs and temp files
+*.log
+*.tmp
+*.swp
+*.bak
+*.DS_Store
+Thumbs.db
+
