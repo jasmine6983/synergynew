@@ -104,19 +104,21 @@ get_header();
 
             ?>
                     <div class="col-md-6 col-lg-4">
-                        <div class="Services-box"
-                            style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
-                            <div class="sb-serv-img" style="background: url(<?php echo get_field('service_image'); ?>);">
-                                <div class="number-label"><?php echo '0' . $i; ?></div>
+                        <a href="<?php echo get_permalink(); ?>" class="service-link">
+                            <div class="Services-box"
+                                style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                                <div class="sb-serv-img" style="background: url(<?php echo get_field('service_image'); ?>);">
+                                    <div class="number-label"><?php echo '0' . $i; ?></div>
+                                </div>
+                                <div class="sb-serv-content">
+                                    <h4><?php echo get_the_title(); ?></h4>
+                                    <p class="product-dec">
+                                        <?php echo get_field('service_description'); ?>
+                                    </p>
+                                    <a href="#" class="learn-more">Learn More <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg"></a>
+                                </div>
                             </div>
-                            <div class="sb-serv-content">
-                                <h4><?php echo get_the_title(); ?></h4>
-                                <p class="product-dec">
-                                    <?php echo get_field('service_description'); ?>
-                                </p>
-                                <a href="#" class="learn-more">Learn More <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg"></a>
-                            </div>
-                        </div>
+                        </a>
                     </div>
 
             <?php
