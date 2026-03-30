@@ -28,7 +28,7 @@ get_header();
                     </p>
 
                     <div class="x9f2_btn_wrap">
-                        <button id="banner-explore-more " class="explore-more small">
+                        <button id="banner-explore-more " class="explore-more small" onclick="window.location.href='<?php echo esc_url(home_url('/contact')); ?>'">
                             <span class="btn-text">Talk to Advisor</span>
                             <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/arrow-more-circle.svg">
                         </button>

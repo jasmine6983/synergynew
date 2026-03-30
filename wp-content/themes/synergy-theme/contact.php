@@ -49,7 +49,7 @@ get_header();
                         </div>
                         <div>
                             <strong><?php echo get_field('email_heading'); ?></strong>
-                            <p><?php echo get_field('contact_form_email', '6'); ?></p>
+                            <p><a href="mailto:<?php echo get_field('contact_form_email', '6'); ?>"><?php echo get_field('contact_form_email', '6'); ?></a></p>
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@ get_header();
                         </div>
                         <div>
                             <strong><?php echo get_field('phone_heading'); ?></strong>
-                            <p><?php echo get_field('contact_phone_number', '6'); ?></p>
+                            <p><a href="tel:<?php echo get_field('contact_phone_number', '6'); ?>"><?php echo get_field('contact_phone_number', '6'); ?></a></p>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ get_header();
                                 <label>Service Interest</label>
                                 <select name="service" class="cx7_input">
                                     <option>Select a service</option>
-                                    <option value="">Choose Services*</option>
+                                    
                                     <option value="Mutual Funds">Mutual Funds</option>
                                     <option value="Portfolio Management Services">Portfolio Management Services</option>
                                     <option value="Alternative Investment Funds">Alternative Investment Funds</option>
