@@ -215,7 +215,7 @@ get_header();
                     <!-- RIGHT IMAGE -->
                     <div class="col-lg-5 mx-auto">
                         <div class="k3l_img_wrap">
-                            <img src="http://localhost/synergy/wp-content/themes/synergy-theme/assets/img/about-last-img.png" width="100%" alt="">
+                            <img src="<?php echo get_field('features_image'); ?>" width="100%" alt="">
                         </div>
                     </div>
 

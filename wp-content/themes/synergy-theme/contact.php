@@ -91,11 +91,13 @@ get_header();
                             <div class="col-md-6">
                                 <label>Email Address</label>
                                 <input type="email" placeholder="john@example.com" class="cx7_input" name="email">
+                                <small class="error error-email"></small>
                             </div>
 
                             <div class="col-md-6">
                                 <label>Phone Number</label>
                                 <input type="text" placeholder="+1 (555) 000-0000" class="cx7_input" name="phone">
+                                <small class="error error-phone"></small>
                             </div>
 
                             <div class="col-md-6">

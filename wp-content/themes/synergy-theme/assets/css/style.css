@@ -1841,7 +1841,9 @@ nav.navbar.navbar-expand-lg.fixed-top .login-link {
     margin: 10px 0;
     margin-bottom: 20px;
 }
-
+.b9l_card_body h5 a{
+    text-decoration: none!important;
+}
 .b9l_meta {
     font-size: 13px;
     color: #6b7280;

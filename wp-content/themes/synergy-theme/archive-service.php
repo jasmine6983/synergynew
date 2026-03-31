@@ -115,7 +115,7 @@ mailto:
                                     <p class="product-dec">
                                         <?php echo get_field('service_description'); ?>
                                     </p>
-                                    <a href="#" class="learn-more">Learn More <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg"></a>
+                                    <a href="<?php echo get_permalink(); ?>">Learn More <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg"></a>
                                 </div>
                             </div>
                         </a>

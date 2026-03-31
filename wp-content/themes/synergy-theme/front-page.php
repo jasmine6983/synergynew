@@ -63,7 +63,7 @@ get_header();
                 </div>
             </div>
             <div class="col-sm-6 col-lg-5 offset-lg-1 col-6">
-                <div  style="background-image: url('<?php echo esc_url($banner_image); ?>');" class="banner-img">
+                <div style="background-image: url('<?php echo esc_url($banner_image); ?>');" class="banner-img">
                     <!-- <img id="hand-img" src="<?php echo $banner_image; ?>" />
                     <div class="box exp-box" style="
     top: 45px;
@@ -522,7 +522,7 @@ if ($ai) {
                         hours or prior.
                     </p>
                     <form class="ajax-contact-form">
-                        
+
 
                         <div class="row">
                             <div class="col-md-6 col-xs-12">
@@ -540,12 +540,14 @@ if ($ai) {
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <input type="email" name="email" placeholder="Email Address*" class="form-control" required />
+                                    <small class="error error-email"></small>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <input type="text" name="phone" placeholder="Phone Number*" class="form-control" />
+                                    <small class="error error-phone"></small>
                                 </div>
                             </div>
 

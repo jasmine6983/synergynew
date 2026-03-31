@@ -139,7 +139,63 @@ Template Name: Footer
         }
     });
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const phone = document.querySelector("[name='phone']");
+    const email = document.querySelector("[name='email']");
+
+    const phoneError = document.querySelector(".error-phone");
+    const emailError = document.querySelector(".error-email");
+
+    if (!phone || !email) return;
+
+    const phonePattern = /^[6-9]\d{9}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // 📱 PHONE VALIDATION
+    phone.addEventListener("input", function () {
+
+        phone.value = phone.value.replace(/\D/g, '').slice(0, 10);
+
+        phoneError.textContent = "";
+        phone.classList.remove("is-invalid");
+
+        if (phone.value.length === 0) return;
+
+        if (phone.value.length < 10) {
+            phoneError.textContent = "Phone must be 10 digits";
+            phone.classList.add("is-invalid");
+            return;
+        }
+
+        if (!phonePattern.test(phone.value)) {
+            phoneError.textContent = "Enter valid Indian number";
+            phone.classList.add("is-invalid");
+        }
+    });
+
+    // 📧 EMAIL VALIDATION
+    email.addEventListener("input", function () {
+
+        emailError.textContent = "";
+        email.classList.remove("is-invalid");
+
+        if (email.value.length === 0) return;
+
+        if (!emailPattern.test(email.value)) {
+            emailError.textContent = "Enter a valid email address";
+            email.classList.add("is-invalid");
+        }
+    });
+
+});
 </script>
+
+
 </body>
 
 </html>
