@@ -40,83 +40,96 @@ get_header();
         </div>
     </div>
 </section>
-<section class="our-services pad-sec pt-2 our-products" style="">
+<section class="our-services pad-sec pt-2 our-products">
     <div class="container">
-        <!-- Tabs Section -->
+
+        <!-- Tabs -->
         <div class="k8x_tabs_wrapper">
             <div class="k8x_tabs_container">
+
+                <!-- ALL TAB -->
+                <div class="k8x_tab_item k8x_active_tab" data-category="all">
+                    <span class="k8x_icon">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="5" height="5"></rect>
+                            <rect x="11" y="2" width="5" height="5"></rect>
+                            <rect x="2" y="11" width="5" height="5"></rect>
+                            <rect x="11" y="11" width="5" height="5"></rect>
+                        </svg>
+                    </span>
+                    All
+                </div>
+
                 <?php
                 $terms = get_terms([
                     'taxonomy' => 'service-category',
                     'hide_empty' => false,
                 ]);
-mailto:
-
-
 
                 if (!empty($terms) && !is_wp_error($terms)) {
-
-                    $i = 0;
-
                     foreach ($terms as $term) {
-
-                        $active_class = ($i === 0) ? 'k8x_active_tab' : '';
-
-                        echo '<div class="k8x_tab_item ' . $active_class . '">
-                <span class="k8x_icon">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="2" width="5" height="5"></rect>
-                        <rect x="11" y="2" width="5" height="5"></rect>
-                        <rect x="2" y="11" width="5" height="5"></rect>
-                        <rect x="11" y="11" width="5" height="5"></rect>
-                    </svg>
-                </span>
-                ' . $term->name . '
-              </div>';
-
-                        $i++;
+                        echo '<div class="k8x_tab_item" data-category="' . $term->slug . '">
+                                <span class="k8x_icon">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="2" width="5" height="5"></rect>
+                                        <rect x="11" y="2" width="5" height="5"></rect>
+                                        <rect x="2" y="11" width="5" height="5"></rect>
+                                        <rect x="11" y="11" width="5" height="5"></rect>
+                                    </svg>
+                                </span>
+                                ' . $term->name . '
+                              </div>';
                     }
                 }
                 ?>
-
-
-
-
-
-
-
             </div>
         </div>
+
+        <!-- Services -->
         <div class="row">
             <?php
             $args = array(
-                'post_type'      => 'service', // your custom post type
-                'posts_per_page' => -1,        // -1 = all posts
-                'post_status'    => 'publish', // only published posts
-                'orderby'        => 'date',    // optional
-                'order'          => 'ASC',    // optional
+                'post_type'      => 'service',
+                'posts_per_page' => -1,
+                'post_status'    => 'publish',
+                'orderby'        => 'date',
+                'order'          => 'ASC',
             );
 
             $service_query = new WP_Query($args);
             $i = 1;
+
             if ($service_query->have_posts()) :
                 while ($service_query->have_posts()) : $service_query->the_post();
 
+                    // Single category
+                    $terms = get_the_terms(get_the_ID(), 'service-category');
+                    $category_slug = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->slug : '';
             ?>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 service-item"
+                        data-category="<?php echo $category_slug; ?>">
+
                         <a href="<?php echo get_permalink(); ?>" class="service-link">
-                            <div class="Services-box"
-                                style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
-                                <div class="sb-serv-img" style="background: url(<?php echo get_field('service_image'); ?>);">
+                            <div class="Services-box">
+
+                                <div class="sb-serv-img"
+                                    style="background: url(<?php echo get_field('service_image'); ?>);">
                                     <div class="number-label"><?php echo '0' . $i; ?></div>
                                 </div>
+
                                 <div class="sb-serv-content">
                                     <h4><?php echo get_the_title(); ?></h4>
+
                                     <p class="product-dec">
                                         <?php echo get_field('service_description'); ?>
                                     </p>
-                                    <a href="<?php echo get_permalink(); ?>">Learn More <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg"></a>
+
+                                    <span class="learn-more">
+                                        Learn More
+                                        <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg">
+                                    </span>
                                 </div>
+
                             </div>
                         </a>
                     </div>
@@ -124,18 +137,45 @@ mailto:
             <?php
                     $i++;
                 endwhile;
-                wp_reset_postdata(); // reset query
+                wp_reset_postdata();
             else :
                 echo '<p>No services found.</p>';
             endif;
             ?>
-
-
         </div>
+
     </div>
 </section>
 
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".k8x_tab_item");
+    const items = document.querySelectorAll(".service-item");
 
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+
+            // Active tab switch
+            tabs.forEach(t => t.classList.remove("k8x_active_tab"));
+            this.classList.add("k8x_active_tab");
+
+            const category = this.getAttribute("data-category");
+
+            items.forEach(item => {
+                const itemCategory = item.getAttribute("data-category");
+
+                if (category === "all" || itemCategory === category) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+
+        });
+    });
+});
+</script>
 
 
 
