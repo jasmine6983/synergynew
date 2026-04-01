@@ -100,8 +100,8 @@ Template Name: Footer
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 senergy. All Rights Reserved</p>
-            <p>Privacy Policy | Terms & Condition</p>
+            <p>© 2025 Synergy. All Rights Reserved</p>
+            <p>Privacy Policy | Terms & Conditions</p>
         </div>
     </div>
 </footer>

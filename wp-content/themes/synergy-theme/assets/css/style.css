@@ -562,6 +562,12 @@ label.bg-label.white {
     font-weight: 400;
 }
 
+.form-wrap p span a {
+    color: #0A558F;
+    margin-right: 5px;
+    font-weight: 400;
+    text-decoration: none;
+}
 .form-wrap .form-control {
 
     height: auto;

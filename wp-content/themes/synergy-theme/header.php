@@ -59,13 +59,13 @@
 
         <div class="mob-nav-wrap">
             <a class="navbar-brand" href="#"><img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/logo.png" width="100%" /></a>
-            <a href="#" class="login-btn">Login</a>
+            <a href="<?php echo wp_login_url(); ?>" class="login-btn">Login</a>
         </div>
         <div class="mob-nav-menu">
             <ul>
                 <?php
                 
-                    $menu_name = 'primary-mobile';
+                    $menu_name = 'primary';
                     $locations = get_nav_menu_locations();
 
                     if (isset($locations[$menu_name])) {

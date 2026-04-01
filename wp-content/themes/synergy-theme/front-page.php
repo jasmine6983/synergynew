@@ -516,10 +516,21 @@ if ($ai) {
             <div class="col-md-6 offset-md-6">
                 <div class="form-wrap">
                     <h2>Connect With Us</h2>
-                    <p>Hey! Connect us with  <span><?php echo get_field('contact_phone_number'); ?></span>or email us through
-                        <span><?php echo get_field('contact_form_email'); ?></span>
-                        <br>or fill the following form. We will contact you back within 12
-                        hours or prior.
+                    <p>
+                        Hey! Connect us with
+                        <span>
+                            <a href="tel:<?php echo get_field('contact_phone_number'); ?>">
+                                <?php echo get_field('contact_phone_number'); ?>
+                            </a>
+                        </span>
+                        or email us through
+                        <span>
+                            <a href="mailto:<?php echo get_field('contact_form_email'); ?>">
+                                <?php echo get_field('contact_form_email'); ?>
+                            </a>
+                        </span>
+                        <br>
+                        or fill the following form. We will contact you back within 12 hours or prior.
                     </p>
                     <form class="ajax-contact-form">
 
