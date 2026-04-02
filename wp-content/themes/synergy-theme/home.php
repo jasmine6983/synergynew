@@ -5,7 +5,7 @@ get_header();
 ?>
 
 
-<section class="b9l_blog_section m-5">
+<section class="b9l_blog_section" style="margin:3rem 1rem">
     <div class="container">
 
         <!-- HEADER -->
