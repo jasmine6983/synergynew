@@ -168,6 +168,18 @@ add_action('wp_enqueue_scripts', 'synergy_enqueue_scripts');
 
 add_theme_support('post-thumbnails');
 
+function custom_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a {
+            background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.png');
+            background-size: contain;
+            width: 100%;
+            height: 80px;
+        }
+    </style>
+<?php }
+add_action('login_enqueue_scripts', 'custom_login_logo');
+
 
 
 

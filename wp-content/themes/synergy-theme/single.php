@@ -26,7 +26,7 @@ get_header();
         <!-- META -->
         <div class="x7b_meta">
             <div class="x7b_avatar">👤</div>
-            <span><?php the_author(); ?></span>
+            <!-- <span><?php the_author(); ?></span> -->
             <span class="x7b_date"><?php echo get_the_date(); ?></span>
         </div>
 

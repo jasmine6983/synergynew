@@ -59,7 +59,7 @@ get_header();
                                         </svg>
                                     </div>
 
-                                    <span class="u1a_name"><?php the_author(); ?></span>
+                                    <!-- <span class="u1a_name"><?php the_author(); ?></span> -->
                                     <span class="u1a_date"><?php echo get_the_date(); ?></span>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@ get_header();
                                         </svg>
                                     </div>
 
-                                    <span class="u1a_name"><?php the_author(); ?></span>
+                                    <!-- <span class="u1a_name"><?php the_author(); ?></span> -->
                                     <span class="u1a_date"><?php echo get_the_date(); ?></span>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@ get_header();
                                     </svg>
                                 </div>
 
-                                <span class="u1a_name"><?php the_author(); ?></span>
+                                <!-- <span class="u1a_name"><?php the_author(); ?></span> -->
 
                                 <span class="u1a_date"><?php echo get_the_date(); ?></span>
 
