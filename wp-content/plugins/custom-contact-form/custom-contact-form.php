@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Custom Contact Form Handler
  * Description: Handles homepage contact form submissions — saves to DB, displays in backend, and sends email.
- * Version: 1.0
+ * Version: 1.1
  * Author: Jasmine
  */
 
@@ -34,10 +34,13 @@ function ccf_create_table()
 }
 register_activation_hook(__FILE__, 'ccf_create_table');
 
+
+// ✅ 2. AJAX handler
 add_action('wp_ajax_synergy_contact_form_ajax', 'synergy_handle_contact_form_ajax');
 add_action('wp_ajax_nopriv_synergy_contact_form_ajax', 'synergy_handle_contact_form_ajax');
 
-function synergy_handle_contact_form_ajax() {
+function synergy_handle_contact_form_ajax()
+{
     global $wpdb;
 
     $table_name = $wpdb->prefix . "custom_contact_form";
@@ -64,7 +67,7 @@ function synergy_handle_contact_form_ajax() {
         wp_send_json_error('Database insert failed');
     }
 
-    // Send email asynchronously
+    // Send email
     $to = get_field('contact_form_email', 6);
     $subject = "New Contact Form Submission";
     $body = "You received a new message:\n\n" .
@@ -74,16 +77,16 @@ function synergy_handle_contact_form_ajax() {
         "Company: $company\n" .
         "Service: $service\n\n" .
         "Message:\n$message";
+
     $headers = ["Content-Type: text/plain; charset=UTF-8"];
 
-    // Optionally, use wp_remote_post() to trigger a background mail process
     wp_mail($to, $subject, $body, $headers);
 
     wp_send_json_success('Message sent successfully');
 }
 
 
-// ✅ 3. Admin Page to Display Entries
+// ✅ 3. Admin Menu
 function ccf_admin_menu()
 {
     add_menu_page(
@@ -98,27 +101,66 @@ function ccf_admin_menu()
 }
 add_action('admin_menu', 'ccf_admin_menu');
 
+
+// ✅ 4. Admin Page with Clear All button
 function ccf_render_admin_page()
 {
     global $wpdb;
     $table_name = $wpdb->prefix . "custom_contact_form";
+
+    // 🔴 Handle Clear All
+    if (
+        isset($_POST['ccf_clear_all']) &&
+        isset($_POST['ccf_nonce']) &&
+        wp_verify_nonce($_POST['ccf_nonce'], 'ccf_clear_all_action')
+    ) {
+        $wpdb->query("DELETE FROM $table_name");
+
+        echo "<div class='notice notice-success'><p>All entries deleted successfully.</p></div>";
+    }
+
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY submitted_at DESC");
 
     echo "<div class='wrap'><h1>Contact Form Entries</h1>
-        <table class='widefat striped'>
-        <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th>Service</th><th>Message</th><th>Date</th></tr></thead><tbody>";
 
-    foreach ($results as $row) {
-        echo "<tr>
-            <td>{$row->id}</td>
-            <td>{$row->first_name} {$row->last_name}</td>
-            <td>{$row->email}</td>
-            <td>{$row->phone}</td>
-            <td>{$row->company}</td>
-            <td>{$row->service}</td>
-            <td>{$row->message}</td>
-            <td>{$row->submitted_at}</td>
-        </tr>";
+    <form method='post' onsubmit='return confirm(\"Are you sure you want to delete all entries?\");'>
+        " . wp_nonce_field('ccf_clear_all_action', 'ccf_nonce', true, false) . "
+        <input type='hidden' name='ccf_clear_all' value='1'>
+        <button type='submit' class='button button-secondary' style='margin-bottom:15px;background:#dc3232;color:#fff;border-color:#dc3232;'>
+            Clear All Entries
+        </button>
+    </form>
+
+    <table class='widefat striped'>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Company</th>
+            <th>Service</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>";
+
+    if ($results) {
+        foreach ($results as $row) {
+            echo "<tr>
+                <td>{$row->id}</td>
+                <td>{$row->first_name} {$row->last_name}</td>
+                <td>{$row->email}</td>
+                <td>{$row->phone}</td>
+                <td>{$row->company}</td>
+                <td>{$row->service}</td>
+                <td>{$row->message}</td>
+                <td>{$row->submitted_at}</td>
+            </tr>";
+        }
+    } else {
+        echo "<tr><td colspan='8'>No entries found.</td></tr>";
     }
 
     echo "</tbody></table></div>";
