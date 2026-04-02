@@ -80,34 +80,34 @@ get_header();
 
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label>Full Name</label>
-                                <input type="text" placeholder="John Doe" class="cx7_input" name="first_name">
+                                <label>Full Name*</label>
+                                <input type="text" placeholder="John Doe" class="cx7_input" name="first_name" required>
                             </div>
                             <div class="col-md-6">
-                                <label>Last Name</label>
-                                <input type="text" placeholder="John Doe" class="cx7_input" name="last_name">
+                                <label>Last Name*</label>
+                                <input type="text" placeholder="John Doe" class="cx7_input" name="last_name" required>
                             </div>
 
                             <div class="col-md-6">
-                                <label>Email Address</label>
-                                <input type="email" placeholder="john@example.com" class="cx7_input" name="email">
+                                <label>Email Address*</label>
+                                <input type="email" placeholder="john@example.com" class="cx7_input" name="email" required>
                                 <small class="error error-email"></small>
                             </div>
 
                             <div class="col-md-6">
-                                <label>Phone Number</label>
-                                <input type="text" placeholder="+1 (555) 000-0000" class="cx7_input" name="phone">
+                                <label>Phone Number*</label>
+                                <input type="text" placeholder="+1 (555) 000-0000" class="cx7_input" name="phone" required>
                                 <small class="error error-phone"></small>
                             </div>
 
                             <div class="col-md-6">
-                                <label>Company (Optional)</label>
-                                <input type="text" placeholder="Company" class="cx7_input" name="company">
+                                <label>Company*</label>
+                                <input type="text" placeholder="Company" class="cx7_input" name="company" required>
                             </div>
 
                             <div class="col-md-6">
                                 <label>Service Interest</label>
-                                <select name="service" class="cx7_input">
+                                <select name="service" class="cx7_input" required>
                                     <option>Select a service</option>
                                     
                                     <option value="Mutual Funds">Mutual Funds</option>
@@ -120,9 +120,9 @@ get_header();
                             </div>
 
                             <div class="col-12">
-                                <label>Message</label>
+                                <label>Message*</label>
                                 <textarea name="message" placeholder="How can we help you?"
-                                    class="cx7_input cx7_textarea"></textarea>
+                                    class="cx7_input cx7_textarea" required></textarea>
                             </div>
 
                             <div class="col-12">

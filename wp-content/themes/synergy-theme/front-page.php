@@ -557,14 +557,14 @@ if ($ai) {
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" name="phone" placeholder="Phone Number*" class="form-control" />
+                                    <input type="text" name="phone" placeholder="Phone Number*" class="form-control" required/>
                                     <small class="error error-phone"></small>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" name="company" placeholder="Company*" class="form-control" />
+                                    <input type="text" name="company" placeholder="Company*" class="form-control" required />
                                 </div>
                             </div>
 
@@ -584,7 +584,7 @@ if ($ai) {
 
                             <div class="col-md-12 col-xs-12">
                                 <div class="form-group">
-                                    <textarea name="message" class="form-control" rows="4" placeholder="Additional Message"></textarea>
+                                    <textarea name="message" class="form-control" rows="4" placeholder="Additional Message*" required></textarea>
                                 </div>
                             </div>
 
