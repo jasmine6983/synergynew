@@ -56,7 +56,7 @@ Template Name: Footer
 
                             <?php
 
-                            $menu_name = 'footer_menu';
+                            $menu_name = 'primary';
                             $locations = get_nav_menu_locations();
 
                             if (isset($locations[$menu_name])) {
@@ -100,7 +100,7 @@ Template Name: Footer
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Synergy. All Rights Reserved</p>
+            <p>© 2026 Synergy. All Rights Reserved</p>
             <p>Privacy Policy | Terms & Conditions</p>
         </div>
     </div>
@@ -192,6 +192,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".k8x_tab_item");
+    const items = document.querySelectorAll(".service-item");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+
+            // Active tab switch
+            tabs.forEach(t => t.classList.remove("k8x_active_tab"));
+            this.classList.add("k8x_active_tab");
+
+            const category = this.getAttribute("data-category");
+
+            items.forEach(item => {
+                const itemCategory = item.getAttribute("data-category");
+
+                if (category === "all" || itemCategory === category) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+
+        });
+    });
 });
 </script>
 
