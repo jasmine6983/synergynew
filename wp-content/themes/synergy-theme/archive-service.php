@@ -65,17 +65,14 @@ get_header();
                     'taxonomy' => 'service-category',
                     'hide_empty' => false,
                 ]);
+                
 
                 if (!empty($terms) && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
+                        $icon_svg = get_field('icon_svg', 'service-category_' . $term->term_id);
                         echo '<div class="k8x_tab_item" data-category="' . $term->slug . '">
                                 <span class="k8x_icon">
-                                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="2" y="2" width="5" height="5"></rect>
-                                        <rect x="11" y="2" width="5" height="5"></rect>
-                                        <rect x="2" y="11" width="5" height="5"></rect>
-                                        <rect x="11" y="11" width="5" height="5"></rect>
-                                    </svg>
+                                    ' . $icon_svg . '
                                 </span>
                                 ' . $term->name . '
                               </div>';
