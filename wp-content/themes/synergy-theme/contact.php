@@ -81,11 +81,11 @@ get_header();
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label>Full Name*</label>
-                                <input type="text" placeholder="John Doe" class="cx7_input" name="first_name" required>
+                                <input type="text" placeholder="John" class="cx7_input" name="first_name" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name*</label>
-                                <input type="text" placeholder="John Doe" class="cx7_input" name="last_name" required>
+                                <input type="text" placeholder="Doe" class="cx7_input" name="last_name" required>
                             </div>
 
                             <div class="col-md-6">
