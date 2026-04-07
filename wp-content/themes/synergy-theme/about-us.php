@@ -29,7 +29,7 @@ get_header();
                     <div class="x9f2_btn_wrap">
                         <button id="banner-explore-more " class="explore-more small" onclick="window.location.href='<?php echo esc_url(home_url('/contact')); ?>'">
                             <span class="btn-text"><?php echo get_field('about_intro_button_text'); ?></span>
-                            <img src="http://localhost/synergy/wp-content/themes/synergy-theme/assets/img/arrow-more-circle.svg">
+                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/arrow-more-circle.svg" alt="">
                         </button>
                     </div>
 
