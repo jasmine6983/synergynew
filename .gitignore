@@ -4,7 +4,8 @@ wp-config.php
 # Ignore all plugins except custom ones
 wp-content/plugins/*
 !wp-content/plugins/create-menu/   
-!wp-content/plugins/custom-contact-form/        
+!wp-content/plugins/custom-contact-form/
+!wp-content/plugins/synergy-newsletter/ 
 
 # Ignore uploads
 wp-content/uploads/
