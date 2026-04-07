@@ -9,6 +9,7 @@ wp-content/plugins/*
 
 # Ignore uploads
 wp-content/uploads/
+wp-content/litespeed/
 
 # Cache, logs and temp files
 *.log
