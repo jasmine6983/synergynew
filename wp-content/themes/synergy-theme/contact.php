@@ -108,7 +108,7 @@ get_header();
                             <div class="col-md-6">
                                 <label>Service Interest</label>
                                 <select name="service" class="cx7_input" required>
-                                    <option>Select a service</option>
+                                    <option value="">Select a service</option>
                                     
                                     <option value="Mutual Funds">Mutual Funds</option>
                                     <option value="Portfolio Management Services">Portfolio Management Services</option>
