@@ -134,15 +134,17 @@ get_header();
             <?php if (have_posts()): while (have_posts()): the_post(); ?>
 
                     <!-- CARD -->
-                    <div class="col-lg-3 col-md-6 b9l_card">
+                    <div class="col-lg-3 col-md-6 ">
+                        <div class="b9l_card">
 
-                        <a href="<?php the_permalink(); ?>">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
-                            <?php else : ?>
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
-                            <?php endif; ?>
-                        </a>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
+                                <?php else : ?>
+                                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
+                                <?php endif; ?>
+                            </a>
+                        </div>
                         <div class="b9l_card_body">
                             <span class="b9l_tag light"><?php
                                                         $categories = get_the_category();
