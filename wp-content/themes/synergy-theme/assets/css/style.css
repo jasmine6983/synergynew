@@ -803,6 +803,7 @@ nav.navbar {
 
 
 .fixed-top {
+    top : -20px!important;
 
     /* box-shadow: -2px -2px 9px 0px #a1a1a1; */
 
