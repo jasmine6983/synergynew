@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php bloginfo('name'); ?></title>
-    
+
     <?php wp_head(); ?>
 </head>
 
@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg ">
         <div class="container nav-glass">
-            <a class="navbar-brand" href=<?php echo get_home_url(); ?>><img src="<?php echo get_field('site_logo','6'); ?>" /></a>
+            <a class="navbar-brand" href=<?php echo get_home_url(); ?>><img src="<?php echo get_field('site_logo', '6'); ?>" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,11 +35,15 @@
                         $menu = wp_get_nav_menu_object($locations[$menu_name]);
                         $menu_items = wp_get_nav_menu_items($menu->term_id);
                     }
+
+                    $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
                     foreach ($menu_items as $item) {
+                        $menu_path = trim(parse_url($item->url, PHP_URL_PATH), '/');
+                        $active = ($current_path === $menu_path) ? 'active' : '';
 
 
                     ?>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo esc_url($item->url);?>"><?php echo $item->title; ?></a></li>
+                        <li class="nav-item"><a class="nav-link <?php echo $active; ?>" href="<?php echo esc_url($item->url); ?>"><?php echo $item->title; ?></a></li>
                     <?php
                     }
                     ?>
@@ -65,17 +69,17 @@
         <div class="mob-nav-menu">
             <ul>
                 <?php
-                
-                    $menu_name = 'primary';
-                    $locations = get_nav_menu_locations();
 
-                    if (isset($locations[$menu_name])) {
-                        $menu = wp_get_nav_menu_object($locations[$menu_name]);
-                        $menu_items = wp_get_nav_menu_items($menu->term_id);
-                    }
+                $menu_name = 'primary';
+                $locations = get_nav_menu_locations();
+
+                if (isset($locations[$menu_name])) {
+                    $menu = wp_get_nav_menu_object($locations[$menu_name]);
+                    $menu_items = wp_get_nav_menu_items($menu->term_id);
+                }
                 foreach ($menu_items as $item) {
                 ?>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo esc_url($item->url);?>"><?php echo $item->title; ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo esc_url($item->url); ?>"><?php echo $item->title; ?></a></li>
                 <?php
                 }
                 ?>
