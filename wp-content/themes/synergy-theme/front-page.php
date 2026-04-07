@@ -557,7 +557,7 @@ if ($ai) {
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" name="phone" placeholder="Phone Number*" class="form-control" required/>
+                                    <input type="tel" name="phone" placeholder="Phone Number*" class="form-control" required>
                                     <small class="error error-phone"></small>
                                 </div>
                             </div>

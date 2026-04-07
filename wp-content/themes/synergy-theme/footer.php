@@ -110,14 +110,42 @@ Template Name: Footer
 
 <?php wp_footer(); ?>
 <script>
-    document.querySelectorAll(".ajax-contact-form").forEach((form) => {
+   document.querySelectorAll(".ajax-contact-form").forEach((form) => {
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        const phone = form.querySelector("[name='phone']");
+        const phoneError = form.querySelector(".error-phone");
+        const statusEl = form.querySelector(".formStatus");
+
+        // 🧪 VALIDATION
+        let isValid = true;
+        const phonePattern = /^\d{8,12}$/;
+
+        if (phone) {
+            phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
+
+            phoneError.textContent = "";
+            phone.classList.remove("is-invalid");
+
+            if (!phonePattern.test(phone.value)) {
+                phoneError.textContent = "Phone must be 8–12 digits";
+                phone.classList.add("is-invalid");
+                isValid = false;
+            }
+        }
+
+        // 🚫 STOP AJAX CALL
+        if (!isValid) {
+            if (statusEl) statusEl.innerText = "Please fix errors before submitting";
+            return; // 🔥 VERY IMPORTANT (stops fetch)
+        }
+
+        // ✅ CONTINUE ONLY IF VALID
         const formData = new FormData(form);
         formData.append('action', 'synergy_contact_form_ajax');
 
-        const statusEl = form.querySelector(".formStatus");
         if (statusEl) statusEl.innerText = "Sending...";
 
         try {
@@ -138,58 +166,53 @@ Template Name: Footer
             if (statusEl) statusEl.innerText = "Something went wrong.";
         }
     });
-});
 
+});
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const phone = document.querySelector("[name='phone']");
-    const email = document.querySelector("[name='email']");
+    const forms = document.querySelectorAll(".ajax-contact-form"); 
+    forms.forEach(function (form) {
 
-    const phoneError = document.querySelector(".error-phone");
-    const emailError = document.querySelector(".error-email");
+        const phone = form.querySelector("[name='phone']");
+        const phoneError = form.querySelector(".error-phone");
 
-    if (!phone || !email) return;
+        if (!phone || !phoneError) return;
 
-    const phonePattern = /^[6-9]\d{9}$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^\d{8,12}$/;
 
-    // 📱 PHONE VALIDATION
-    phone.addEventListener("input", function () {
+        // 📱 LIVE VALIDATION
+        phone.addEventListener("input", function () {
 
-        phone.value = phone.value.replace(/\D/g, '').slice(0, 10);
+            phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
 
-        phoneError.textContent = "";
-        phone.classList.remove("is-invalid");
+            phoneError.textContent = "";
+            phone.classList.remove("is-invalid");
 
-        if (phone.value.length === 0) return;
+            if (phone.value.length > 0 && phone.value.length < 8) {
+                phoneError.textContent = "Phone must be at least 8 digits";
+                phone.classList.add("is-invalid");
+            }
+        });
 
-        if (phone.value.length < 10) {
-            phoneError.textContent = "Phone must be 10 digits";
-            phone.classList.add("is-invalid");
-            return;
-        }
+        // 🚫 SUBMIT VALIDATION (per form)
+        form.addEventListener("submit", function (e) {
 
-        if (!phonePattern.test(phone.value)) {
-            phoneError.textContent = "Enter valid Indian number";
-            phone.classList.add("is-invalid");
-        }
-    });
+            let isValid = true;
 
-    // 📧 EMAIL VALIDATION
-    email.addEventListener("input", function () {
+            if (!phone.value || phone.value.length < 8 || phone.value.length > 12) {
+                phoneError.textContent = "Phone must be 8–12 digits";
+                phone.classList.add("is-invalid");
+                isValid = false;
+            }
 
-        emailError.textContent = "";
-        email.classList.remove("is-invalid");
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
 
-        if (email.value.length === 0) return;
-
-        if (!emailPattern.test(email.value)) {
-            emailError.textContent = "Enter a valid email address";
-            email.classList.add("is-invalid");
-        }
     });
 
 });
