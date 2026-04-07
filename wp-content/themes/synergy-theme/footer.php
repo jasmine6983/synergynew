@@ -41,7 +41,10 @@ Template Name: Footer
     padding-left: 20px;
 " placeholder="Enter your email address" class="newsletter-email">
                             <button class="button-sub"><img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/plane.svg"></button>
-                            <span class="newsletter-msg"></span>
+                            <span class="newsletter-msg" style="position: absolute;
+    width: auto;
+    left: 5px;
+    bottom: -15px;"></span>
                         </div>
                     </div>
 

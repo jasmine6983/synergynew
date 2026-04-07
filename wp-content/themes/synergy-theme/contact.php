@@ -74,7 +74,7 @@ get_header();
             <div class="col-lg-6">
                 <div class="cx7_form_box">
 
-                    <h3 class="mb-4">Inquiry Form</h3>
+                    <h3 class="mb-4">Enquiry Form</h3>
 
                     <form class="ajax-contact-form">
 
