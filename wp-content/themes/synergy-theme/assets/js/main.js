@@ -307,4 +307,22 @@ navLinks.forEach((link) => {
   });
 });
 
+const tabs = document.querySelectorAll(".k8x_tab_item");
 
+tabs.forEach((tab) => {
+  tab.addEventListener("click", function () {
+    // remove active
+
+    tabs.forEach((t) => t.classList.remove("k8x_active_tab"));
+
+    this.classList.add("k8x_active_tab"); // smooth scroll to center
+
+    this.scrollIntoView({
+      behavior: "smooth",
+
+      inline: "center",
+
+      block: "nearest",
+    });
+  });
+});
