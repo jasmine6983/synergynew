@@ -24,10 +24,10 @@ get_header();
                 </p>
 
                 <div class="x9f2_btn_wrap mt-4">
-                    <a href="#features" id="banner-explore-more" class="explore-more small">
+                    <button id="banner-explore-more" class="explore-more small">
                         <span class="btn-text"><?php echo get_field('detail_page_intro_button_text'); ?></span>
                         <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/arrow-more-circle.svg" alt="">
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -203,3 +203,8 @@ get_header();
 
 
 <?php get_footer(); ?>
+<script>
+document.getElementById("banner-explore-more").addEventListener("click", function() {
+    document.getElementById("features").scrollIntoView({ behavior: "smooth" });
+});
+</script>
