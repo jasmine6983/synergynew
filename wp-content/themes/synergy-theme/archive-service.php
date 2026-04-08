@@ -111,7 +111,7 @@ get_header();
 
                                 <div class="sb-serv-img"
                                     style="background: url(<?php echo get_field('service_image'); ?>);">
-                                    <div class="number-label"><?php echo '0' . $i; ?></div>
+                                    <!-- <div class="number-label"><?php echo '0' . $i; ?></div> -->
                                 </div>
 
                                 <div class="sb-serv-content">
