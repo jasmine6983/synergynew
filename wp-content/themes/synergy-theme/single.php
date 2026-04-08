@@ -32,7 +32,11 @@ get_header();
 
         <!-- IMAGE -->
         <div class="x7b_img_wrap">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+            <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+            <?php else : ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/default.jpg" alt="">
+            <?php endif; ?>
         </div>
 
         <!-- CONTENT -->

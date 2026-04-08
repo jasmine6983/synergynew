@@ -11,7 +11,7 @@ get_header();
         <div class="row align-items-center">
 
             <div class="col-lg-6">
-                <div class="bg-label d-inline-block"><?php echo the_title() ?></div>
+                <!-- <div class="bg-label d-inline-block"><?php echo the_title() ?></div> -->
 
                 <h2 class="x9f2_main_title">
                     <!-- <?php echo get_field('heading_part_1'); ?><br> -->
