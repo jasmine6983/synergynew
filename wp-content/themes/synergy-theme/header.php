@@ -77,13 +77,22 @@
                     $menu = wp_get_nav_menu_object($locations[$menu_name]);
                     $menu_items = wp_get_nav_menu_items($menu->term_id);
                 }
+
+                $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
                 foreach ($menu_items as $item) {
+                    $menu_path = trim(parse_url($item->url, PHP_URL_PATH), '/');
+                    $active = ($current_path === $menu_path) ? 'active' : '';
                 ?>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo esc_url($item->url); ?>"><?php echo $item->title; ?></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $active; ?>" href="<?php echo esc_url($item->url); ?>">
+                            <?php echo $item->title; ?>
+                        </a>
+                    </li>
                 <?php
                 }
                 ?>
-
+            </ul>
 
         </div>
 

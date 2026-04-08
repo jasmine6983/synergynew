@@ -65,7 +65,7 @@ get_header();
                     'taxonomy' => 'service-category',
                     'hide_empty' => false,
                 ]);
-                
+
 
                 if (!empty($terms) && !is_wp_error($terms)) {
                     foreach ($terms as $term) {
@@ -106,7 +106,7 @@ get_header();
                     <div class="col-md-6 col-lg-4 service-item"
                         data-category="<?php echo $category_slug; ?>">
 
-                        <a href="<?php echo get_permalink(); ?>" class="service-link">
+                       
                             <div class="Services-box">
 
                                 <div class="sb-serv-img"
@@ -121,14 +121,24 @@ get_header();
                                         <?php echo get_field('service_description'); ?>
                                     </p>
 
-                                    <span class="learn-more">
-                                        Learn More
-                                        <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg">
-                                    </span>
+                                    <?php if (is_front_page()) : ?>
+                                        <!-- HOME PAGE: keep toggle -->
+                                        <span class="learn-more">
+                                            Learn More
+                                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg">
+                                        </span>
+
+                                    <?php else : ?>
+                                        <!-- SERVICE PAGE: redirect -->
+                                        <a href="<?php the_permalink(); ?>" class="service-link">
+                                            Learn More
+                                            <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/aroow-blue.svg">
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
 
                             </div>
-                        </a>
+                        
                     </div>
 
             <?php
