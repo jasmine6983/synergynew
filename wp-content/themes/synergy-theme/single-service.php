@@ -24,10 +24,10 @@ get_header();
                 </p>
 
                 <div class="x9f2_btn_wrap mt-4">
-                    <button id="banner-explore-more " class="explore-more small">
-                        <span class="btn-text"><?php echo get_field('detail_page_intro_button_text'); ?>  </span>
+                    <a href="#features" id="banner-explore-more" class="explore-more small">
+                        <span class="btn-text"><?php echo get_field('detail_page_intro_button_text'); ?></span>
                         <img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/arrow-more-circle.svg" alt="">
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ get_header();
 
         <span class="mf_badge light">FEATURES</span>
 
-        <h2 class="mf_section_title">
+        <h2 class="mf_section_title" id="features">
             <?php echo get_field('feature_main_heading_part_1'); ?> <br> and <span><?php echo get_field('feature_main_heading_part_2'); ?></span>
         </h2>
 

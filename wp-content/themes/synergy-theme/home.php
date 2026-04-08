@@ -33,12 +33,14 @@ get_header();
 
                     <div class="col-lg-8">
                         <div class="b9l_feature_big">
+                            <a href="<?php the_permalink(); ?>">
 
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
-                            <?php else : ?>
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
-                            <?php endif; ?>
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
+                                <?php else : ?>
+                                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
+                                <?php endif; ?>
+                            </a>
 
                             <div class="b9l_overlay">
                                 <span class="b9l_tag">
@@ -87,12 +89,13 @@ get_header();
 
                     <div class="col-lg-4">
                         <div class="b9l_feature_small">
-
-                            <?php if (has_post_thumbnail()) : ?>
-                                <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
-                            <?php else : ?>
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
-                            <?php endif; ?>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
+                                <?php else : ?>
+                                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="img-fluid">
+                                <?php endif; ?>
+                            </a>
 
                             <div class="b9l_overlay">
                                 <span class="b9l_tag">
