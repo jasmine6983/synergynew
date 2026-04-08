@@ -727,6 +727,17 @@ footer {
     text-overflow: ellipsis;
 }
 
+.product-dec {
+    height: 60px;
+    /* collapsed height */
+    overflow: hidden;
+    transition: height 0.4s ease;
+}
+
+.product-dec.expanded {
+    height: auto;
+    /* expands fuinely */
+}
 
 @keyframes mymove {
     from {
@@ -823,17 +834,7 @@ nav.navbar {
 }
 
 
-.product-dec {
-    height: 60px;
-    /* collapsed height */
-    overflow: hidden;
-    transition: height 0.4s ease;
-}
 
-.product-dec.expanded {
-    height: auto;
-    /* expands fuinely */
-}
 
 
 .h10-process-wrapper .number-label {

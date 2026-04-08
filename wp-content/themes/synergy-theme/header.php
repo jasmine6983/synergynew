@@ -15,7 +15,7 @@
 </head>
 
 
-<body>
+<body <?php body_class(); ?>>
     <nav class="navbar navbar-expand-lg ">
         <div class="container nav-glass">
             <a class="navbar-brand" href=<?php echo get_home_url(); ?>><img src="<?php echo get_field('site_logo', '6'); ?>" /></a>
