@@ -14,7 +14,7 @@ get_header();
                 <div class="bg-label d-inline-block"><?php echo the_title() ?></div>
 
                 <h2 class="x9f2_main_title">
-                    <?php echo get_field('heading_part_1'); ?><br>
+                    <!-- <?php echo get_field('heading_part_1'); ?><br> -->
                     <span><?php echo get_field('heading_part_2'); ?></span>
 
 
