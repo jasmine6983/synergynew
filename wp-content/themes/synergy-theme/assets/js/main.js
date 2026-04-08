@@ -266,8 +266,6 @@ $("#banner-explore-more").click(function () {
   );
 });
 
-
-
 $(".learn-more").click(function (e) {
   e.preventDefault();
 
@@ -296,3 +294,17 @@ $("#banner-explore-more-mobile").click(function () {
     btnText.text("Explore More");
   }
 });
+
+const navLinks = document.querySelectorAll(".mob-nav-menu .nav-link");
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", function () {
+    this.scrollIntoView({
+      behavior: "smooth",
+      inline: "center", // 🔥 key fix (not start/end)
+      block: "nearest",
+    });
+  });
+});
+
+
