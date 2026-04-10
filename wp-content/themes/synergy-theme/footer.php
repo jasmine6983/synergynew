@@ -43,8 +43,7 @@ Template Name: Footer
                             <button class="button-sub"><img src="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/plane.svg"></button>
                             <span class="newsletter-msg" style="position: absolute;
     width: auto;
-    left: 5px;
-    bottom: -15px;"></span>
+    left: 5px;"></span>
                         </div>
                     </div>
 
@@ -305,7 +304,7 @@ Template Name: Footer
         });
     });
 
-    
+
 </script>
 
 
