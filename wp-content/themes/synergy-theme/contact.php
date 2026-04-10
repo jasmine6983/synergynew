@@ -98,7 +98,7 @@ get_header();
 
                             <div class="col-md-6">
                                 <label>Phone Number*</label>
-                                <input type="tel" placeholder="+1 (555) 000-0000" class="cx7_input" name="phone" required>
+                                <input type="tel" placeholder="+917562338976" class="cx7_input" name="phone" required>
                                 <small class="error error-phone"></small>
                             </div>
 
