@@ -307,6 +307,18 @@ navLinks.forEach((link) => {
   });
 });
 
+window.addEventListener("load", function () {
+  const active = document.querySelector('.mob-nav-menu .nav-link.active');
+ 
+  if (active) {
+    active.scrollIntoView({
+      behavior: "instant",   // no animation on load
+      inline: "center",      // 🔥 key fix
+      block: "nearest"
+    });
+  }
+});
+
 const tabs = document.querySelectorAll(".k8x_tab_item");
 
 tabs.forEach((tab) => {

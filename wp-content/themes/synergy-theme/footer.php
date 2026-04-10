@@ -304,6 +304,8 @@ Template Name: Footer
             });
         });
     });
+
+    
 </script>
 
 
