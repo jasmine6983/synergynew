@@ -114,169 +114,169 @@ Template Name: Footer
 
 <?php wp_footer(); ?>
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
-    document.querySelectorAll(".ajax-contact-form").forEach((form) => {
+        document.querySelectorAll(".ajax-contact-form").forEach((form) => {
 
-        const firstName = form.querySelector("[name='first_name']");
-        const lastName = form.querySelector("[name='last_name']");
-        const email = form.querySelector("[name='email']");
-        const phone = form.querySelector("[name='phone']");
+            const firstName = form.querySelector("[name='first_name']");
+            const lastName = form.querySelector("[name='last_name']");
+            const email = form.querySelector("[name='email']");
+            const phone = form.querySelector("[name='phone']");
 
-        const firstNameError = form.querySelector(".error-first-name");
-        const lastNameError = form.querySelector(".error-last-name");
-        const emailError = form.querySelector(".error-email");
-        const phoneError = form.querySelector(".error-phone");
+            const firstNameError = form.querySelector(".error-first-name");
+            const lastNameError = form.querySelector(".error-last-name");
+            const emailError = form.querySelector(".error-email");
+            const phoneError = form.querySelector(".error-phone");
 
-        const statusEl = form.querySelector(".formStatus");
+            const statusEl = form.querySelector(".formStatus");
 
-        const namePattern = /^[A-Za-z][A-Za-z\s'-]*$/;
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-        const phonePattern = /^\d{8,12}$/;
+            const namePattern = /^[A-Za-z][A-Za-z\s'-]*$/;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            const phonePattern = /^\d{8,12}$/;
 
-        /* ================= LIVE VALIDATION ================= */
+            /* ================= LIVE VALIDATION ================= */
 
-        // First Name
-        firstName?.addEventListener("input", function () {
-            firstNameError.textContent = "";
-            firstName.classList.remove("is-invalid");
-
-            if (firstName.value && !namePattern.test(firstName.value.trim())) {
-                firstNameError.textContent = "Must contain only letters";
-                firstName.classList.add("is-invalid");
-            }
-        });
-
-        // Last Name
-        lastName?.addEventListener("input", function () {
-            lastNameError.textContent = "";
-            lastName.classList.remove("is-invalid");
-
-            if (lastName.value && !namePattern.test(lastName.value.trim())) {
-                lastNameError.textContent = "Must contain only letters";
-                lastName.classList.add("is-invalid");
-            }
-        });
-
-        // Email
-        email?.addEventListener("input", function () {
-            emailError.textContent = "";
-            email.classList.remove("is-invalid");
-
-            if (email.value && !emailPattern.test(email.value.trim())) {
-                emailError.textContent = "Invalid email format";
-                email.classList.add("is-invalid");
-            }
-        });
-
-        // Phone
-        phone?.addEventListener("input", function () {
-            phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
-
-            phoneError.textContent = "";
-            phone.classList.remove("is-invalid");
-
-            if (phone.value.length > 0 && phone.value.length < 8) {
-                phoneError.textContent = "Phone must be at least 8 digits";
-                phone.classList.add("is-invalid");
-            }
-        });
-
-        /* ================= SUBMIT HANDLER ================= */
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            let isValid = true;
-
-            // Reset status
-            if (statusEl) statusEl.innerText = "";
-
-            /* -------- FIRST NAME -------- */
-            if (firstName) {
+            // First Name
+            firstName?.addEventListener("input", function() {
                 firstNameError.textContent = "";
                 firstName.classList.remove("is-invalid");
 
-                if (!namePattern.test(firstName.value.trim())) {
-                    firstNameError.textContent = "Name should start with a letter";
+                if (firstName.value && !namePattern.test(firstName.value.trim())) {
+                    firstNameError.textContent = "Must contain only letters";
                     firstName.classList.add("is-invalid");
-                    isValid = false;
                 }
-            }
+            });
 
-            /* -------- LAST NAME -------- */
-            if (lastName) {
+            // Last Name
+            lastName?.addEventListener("input", function() {
                 lastNameError.textContent = "";
                 lastName.classList.remove("is-invalid");
 
-                if (!namePattern.test(lastName.value.trim())) {
-                    lastNameError.textContent = "Name should start with a letter";
+                if (lastName.value && !namePattern.test(lastName.value.trim())) {
+                    lastNameError.textContent = "Must contain only letters";
                     lastName.classList.add("is-invalid");
-                    isValid = false;
                 }
-            }
+            });
 
-            /* -------- EMAIL -------- */
-            if (email) {
+            // Email
+            email?.addEventListener("blur", function() {
                 emailError.textContent = "";
                 email.classList.remove("is-invalid");
 
-                if (!emailPattern.test(email.value.trim())) {
-                    emailError.textContent = "Enter a valid email address";
+                if (email.value && !emailPattern.test(email.value.trim())) {
+                    emailError.textContent = "Invalid email format";
                     email.classList.add("is-invalid");
-                    isValid = false;
                 }
-            }
+            });
 
-            /* -------- PHONE -------- */
-            if (phone) {
+            // Phone
+            phone?.addEventListener("blur", function() {
                 phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
 
                 phoneError.textContent = "";
                 phone.classList.remove("is-invalid");
 
-                if (!phonePattern.test(phone.value)) {
+                if (phone.value && (phone.value.length < 8 || phone.value.length > 12)) {
                     phoneError.textContent = "Phone must be 8–12 digits";
                     phone.classList.add("is-invalid");
-                    isValid = false;
                 }
-            }
+            });
 
-            /* -------- STOP IF INVALID -------- */
-            if (!isValid) {
-                if (statusEl) statusEl.innerText = "Please fix errors before submitting";
-                return;
-            }
+            /* ================= SUBMIT HANDLER ================= */
 
-            /* -------- AJAX SUBMIT -------- */
-            const formData = new FormData(form);
-            formData.append('action', 'synergy_contact_form_ajax');
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-            if (statusEl) statusEl.innerText = "Sending...";
+                let isValid = true;
 
-            try {
-                const response = await fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
-                    method: "POST",
-                    body: formData,
-                });
+                // Reset status
+                if (statusEl) statusEl.innerText = "";
 
-                const result = await response.json();
+                /* -------- FIRST NAME -------- */
+                if (firstName) {
+                    firstNameError.textContent = "";
+                    firstName.classList.remove("is-invalid");
 
-                if (result.success) {
-                    if (statusEl) statusEl.innerText = "Message sent successfully!";
-                    form.reset();
-                } else {
-                    if (statusEl) statusEl.innerText = "Error: " + result.data;
+                    if (!namePattern.test(firstName.value.trim())) {
+                        firstNameError.textContent = "Name should start with a letter";
+                        firstName.classList.add("is-invalid");
+                        isValid = false;
+                    }
                 }
 
-            } catch (err) {
-                if (statusEl) statusEl.innerText = "Something went wrong.";
-            }
+                /* -------- LAST NAME -------- */
+                if (lastName) {
+                    lastNameError.textContent = "";
+                    lastName.classList.remove("is-invalid");
+
+                    if (!namePattern.test(lastName.value.trim())) {
+                        lastNameError.textContent = "Name should start with a letter";
+                        lastName.classList.add("is-invalid");
+                        isValid = false;
+                    }
+                }
+
+                /* -------- EMAIL -------- */
+                if (email) {
+                    emailError.textContent = "";
+                    email.classList.remove("is-invalid");
+
+                    if (!emailPattern.test(email.value.trim())) {
+                        emailError.textContent = "Enter a valid email address";
+                        email.classList.add("is-invalid");
+                        isValid = false;
+                    }
+                }
+
+                /* -------- PHONE -------- */
+                if (phone) {
+                    phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
+
+                    phoneError.textContent = "";
+                    phone.classList.remove("is-invalid");
+
+                    if (!phonePattern.test(phone.value)) {
+                        phoneError.textContent = "Phone must be 8–12 digits";
+                        phone.classList.add("is-invalid");
+                        isValid = false;
+                    }
+                }
+
+                /* -------- STOP IF INVALID -------- */
+                if (!isValid) {
+                    if (statusEl) statusEl.innerText = "Please fix errors before submitting";
+                    return;
+                }
+
+                /* -------- AJAX SUBMIT -------- */
+                const formData = new FormData(form);
+                formData.append('action', 'synergy_contact_form_ajax');
+
+                if (statusEl) statusEl.innerText = "Sending...";
+
+                try {
+                    const response = await fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        if (statusEl) statusEl.innerText = "Message sent successfully!";
+                        form.reset();
+                    } else {
+                        if (statusEl) statusEl.innerText = "Error: " + result.data;
+                    }
+
+                } catch (err) {
+                    if (statusEl) statusEl.innerText = "Something went wrong.";
+                }
+            });
+
         });
 
     });
-
-});
 
     document.addEventListener("DOMContentLoaded", function() {
         const tabs = document.querySelectorAll(".k8x_tab_item");
