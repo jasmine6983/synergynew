@@ -198,7 +198,7 @@ Template Name: Footer
                     firstName.classList.remove("is-invalid");
 
                     if (!namePattern.test(firstName.value.trim())) {
-                        firstNameError.textContent = "Name should start with a letter";
+                        firstNameError.textContent = "Name should contain only letters";
                         firstName.classList.add("is-invalid");
                         isValid = false;
                     }
@@ -210,7 +210,7 @@ Template Name: Footer
                     lastName.classList.remove("is-invalid");
 
                     if (!namePattern.test(lastName.value.trim())) {
-                        lastNameError.textContent = "Name should start with a letter";
+                        lastNameError.textContent = "Name should contain only letters";
                         lastName.classList.add("is-invalid");
                         isValid = false;
                     }
