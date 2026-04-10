@@ -117,7 +117,7 @@ get_header();
                                 <div class="sb-serv-content">
                                     <h4><?php echo get_the_title(); ?></h4>
 
-                                    <p class="product-dec">
+                                    <p class="product-dec pc-dec">
                                         <?php echo get_field('service_description'); ?>
                                     </p>
 
