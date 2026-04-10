@@ -117,7 +117,7 @@ get_header();
                                     </div>
 
                                     <!-- <span class="u1a_name"><?php the_author(); ?></span> -->
-                                    <span class="u1a_date"><?php echo get_the_date(); ?></span>
+                                    <span class="u1a_date_white"><?php echo get_the_date(); ?></span>
                                 </div>
                             </div>
 

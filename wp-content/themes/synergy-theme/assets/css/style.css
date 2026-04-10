@@ -2218,11 +2218,11 @@ body {
         list-style: none;
     }
 
-    .mob-nav-menu ul li {}
+    
 
     .mob-nav-menu ul li a {
         color: #494949;
-        font-size: 16px;
+        font-size: 12px;
         font-family: 'Poppins';
         padding-left: 15px;
         padding-right: 15px;
@@ -2260,7 +2260,7 @@ body {
 
     .mob-nav-menu a {
         display: inline-block;
-        padding: 10px 15px;
+        padding: 5px 5px;
         text-decoration: none;
         color: #000;
     }
