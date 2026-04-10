@@ -82,10 +82,12 @@ get_header();
                             <div class="col-md-6">
                                 <label>Full Name*</label>
                                 <input type="text" placeholder="John" class="cx7_input" name="first_name" required>
+                                <small class="error error-first-name"></small>
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name*</label>
                                 <input type="text" placeholder="Doe" class="cx7_input" name="last_name" required>
+                                <small class="error error-last-name"></small>
                             </div>
 
                             <div class="col-md-6">
