@@ -114,19 +114,121 @@ Template Name: Footer
 
 <?php wp_footer(); ?>
 <script>
+   document.addEventListener("DOMContentLoaded", function () {
+
     document.querySelectorAll(".ajax-contact-form").forEach((form) => {
+
+        const firstName = form.querySelector("[name='first_name']");
+        const lastName = form.querySelector("[name='last_name']");
+        const email = form.querySelector("[name='email']");
+        const phone = form.querySelector("[name='phone']");
+
+        const firstNameError = form.querySelector(".error-first-name");
+        const lastNameError = form.querySelector(".error-last-name");
+        const emailError = form.querySelector(".error-email");
+        const phoneError = form.querySelector(".error-phone");
+
+        const statusEl = form.querySelector(".formStatus");
+
+        const namePattern = /^[A-Za-z][A-Za-z\s'-]*$/;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const phonePattern = /^\d{8,12}$/;
+
+        /* ================= LIVE VALIDATION ================= */
+
+        // First Name
+        firstName?.addEventListener("input", function () {
+            firstNameError.textContent = "";
+            firstName.classList.remove("is-invalid");
+
+            if (firstName.value && !namePattern.test(firstName.value.trim())) {
+                firstNameError.textContent = "Must contain only letters";
+                firstName.classList.add("is-invalid");
+            }
+        });
+
+        // Last Name
+        lastName?.addEventListener("input", function () {
+            lastNameError.textContent = "";
+            lastName.classList.remove("is-invalid");
+
+            if (lastName.value && !namePattern.test(lastName.value.trim())) {
+                lastNameError.textContent = "Must contain only letters";
+                lastName.classList.add("is-invalid");
+            }
+        });
+
+        // Email
+        email?.addEventListener("input", function () {
+            emailError.textContent = "";
+            email.classList.remove("is-invalid");
+
+            if (email.value && !emailPattern.test(email.value.trim())) {
+                emailError.textContent = "Invalid email format";
+                email.classList.add("is-invalid");
+            }
+        });
+
+        // Phone
+        phone?.addEventListener("input", function () {
+            phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
+
+            phoneError.textContent = "";
+            phone.classList.remove("is-invalid");
+
+            if (phone.value.length > 0 && phone.value.length < 8) {
+                phoneError.textContent = "Phone must be at least 8 digits";
+                phone.classList.add("is-invalid");
+            }
+        });
+
+        /* ================= SUBMIT HANDLER ================= */
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const phone = form.querySelector("[name='phone']");
-            const phoneError = form.querySelector(".error-phone");
-            const statusEl = form.querySelector(".formStatus");
-
-            // 🧪 VALIDATION
             let isValid = true;
-            const phonePattern = /^\d{8,12}$/;
 
+            // Reset status
+            if (statusEl) statusEl.innerText = "";
+
+            /* -------- FIRST NAME -------- */
+            if (firstName) {
+                firstNameError.textContent = "";
+                firstName.classList.remove("is-invalid");
+
+                if (!namePattern.test(firstName.value.trim())) {
+                    firstNameError.textContent = "Name should start with a letter";
+                    firstName.classList.add("is-invalid");
+                    isValid = false;
+                }
+            }
+
+            /* -------- LAST NAME -------- */
+            if (lastName) {
+                lastNameError.textContent = "";
+                lastName.classList.remove("is-invalid");
+
+                if (!namePattern.test(lastName.value.trim())) {
+                    lastNameError.textContent = "Name should start with a letter";
+                    lastName.classList.add("is-invalid");
+                    isValid = false;
+                }
+            }
+
+            /* -------- EMAIL -------- */
+            if (email) {
+                emailError.textContent = "";
+                email.classList.remove("is-invalid");
+
+                if (!emailPattern.test(email.value.trim())) {
+                    emailError.textContent = "Enter a valid email address";
+                    email.classList.add("is-invalid");
+                    isValid = false;
+                }
+            }
+
+            /* -------- PHONE -------- */
             if (phone) {
                 phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
 
@@ -140,13 +242,13 @@ Template Name: Footer
                 }
             }
 
-            // 🚫 STOP AJAX CALL
+            /* -------- STOP IF INVALID -------- */
             if (!isValid) {
                 if (statusEl) statusEl.innerText = "Please fix errors before submitting";
-                return; // 🔥 VERY IMPORTANT (stops fetch)
+                return;
             }
 
-            // ✅ CONTINUE ONLY IF VALID
+            /* -------- AJAX SUBMIT -------- */
             const formData = new FormData(form);
             formData.append('action', 'synergy_contact_form_ajax');
 
@@ -166,6 +268,7 @@ Template Name: Footer
                 } else {
                     if (statusEl) statusEl.innerText = "Error: " + result.data;
                 }
+
             } catch (err) {
                 if (statusEl) statusEl.innerText = "Something went wrong.";
             }
@@ -173,54 +276,7 @@ Template Name: Footer
 
     });
 
-
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        const forms = document.querySelectorAll(".ajax-contact-form");
-        forms.forEach(function(form) {
-
-            const phone = form.querySelector("[name='phone']");
-            const phoneError = form.querySelector(".error-phone");
-
-            if (!phone || !phoneError) return;
-
-            const phonePattern = /^\d{8,12}$/;
-
-            // 📱 LIVE VALIDATION
-            phone.addEventListener("input", function() {
-
-                phone.value = phone.value.replace(/\D/g, '').slice(0, 12);
-
-                phoneError.textContent = "";
-                phone.classList.remove("is-invalid");
-
-                if (phone.value.length > 0 && phone.value.length < 8) {
-                    phoneError.textContent = "Phone must be at least 8 digits";
-                    phone.classList.add("is-invalid");
-                }
-            });
-
-            // 🚫 SUBMIT VALIDATION (per form)
-            form.addEventListener("submit", function(e) {
-
-                let isValid = true;
-
-                if (!phone.value || phone.value.length < 8 || phone.value.length > 12) {
-                    phoneError.textContent = "Phone must be 8–12 digits";
-                    phone.classList.add("is-invalid");
-                    isValid = false;
-                }
-
-                if (!isValid) {
-                    e.preventDefault();
-                }
-            });
-
-        });
-
-    });
-
+});
 
     document.addEventListener("DOMContentLoaded", function() {
         const tabs = document.querySelectorAll(".k8x_tab_item");

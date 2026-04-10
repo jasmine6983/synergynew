@@ -539,12 +539,14 @@ if ($ai) {
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <input type="text" name="first_name" placeholder="First Name*" class="form-control" required />
+                                    <small class="error error-first-name"></small>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <input type="text" name="last_name" placeholder="Last Name*" class="form-control" required />
+                                    <small class="error error-last-name"></small>
                                 </div>
                             </div>
 
