@@ -9,6 +9,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Synergy" />
+    <meta property="og:description" content="AI Powered,Human Driven" />
+   <meta property="og:image" content="<?php echo get_site_url(); ?>/wp-content/themes/synergy-theme/assets/img/logo.png" />
+   <meta property="og:url" content="<?php echo get_permalink(); ?>" />
+    <meta property="og:type" content="website" />
     <title><?php bloginfo('name'); ?></title>
 
     <?php wp_head(); ?>
