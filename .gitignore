@@ -1,5 +1,7 @@
 # Ignore configuration files
 wp-config.php
+.htaccess
+synergy.sql
 
 # Ignore all plugins except custom ones
 wp-content/plugins/*
